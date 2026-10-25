@@ -1,0 +1,175 @@
+<title>Calmora Cafe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout concept: a calm single-column page built around a floor plan of the cafe's zones */
+:root{
+  --bg:#F2F6F4; --surface:#FFFFFF; --fg:#17302E; --muted:#51675F; --line:#CFDDD7;
+  --accent:#1F6F5B; --accent-fg:#FFFFFF; --warm:#C98A2B; --soft:#DCEBE5;
+  --z-quiet:#BFDDD1; --z-read:#E9D8B3; --z-social:#CFD9EA; --z-food:#EAC9B8;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --font-body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1C1A; --surface:#172926; --fg:#E6F0EC; --muted:#9DB5AB; --line:#2A423C;
+  --accent:#5CC2A3; --accent-fg:#0B1B17; --warm:#E2AE55; --soft:#1C332D;
+  --z-quiet:#24564A; --z-read:#5B4B26; --z-social:#2F4468; --z-food:#6A4435; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1C1A; --surface:#172926; --fg:#E6F0EC; --muted:#9DB5AB; --line:#2A423C;
+  --accent:#5CC2A3; --accent-fg:#0B1B17; --warm:#E2AE55; --soft:#1C332D;
+  --z-quiet:#24564A; --z-read:#5B4B26; --z-social:#2F4468; --z-food:#6A4435; color-scheme:dark}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#172926}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:20px;flex-wrap:wrap}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.3rem}
+.brand span{color:var(--accent)}
+nav a.link{color:var(--muted);text-decoration:none;font-size:.95rem;margin-left:18px}
+nav a.link:hover{color:var(--fg)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:36px 56px}
+.hero p.lead{font-size:1.2rem;color:var(--muted);margin-top:18px;max-width:34ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:1rem;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{color:var(--accent);background:transparent}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px}
+.plan svg{width:100%;height:auto;display:block}
+.plan figcaption{font-size:.82rem;color:var(--muted);padding:10px 6px 2px}
+section{padding-block:56px;border-top:1px solid var(--line)}
+section>.eyebrow{margin-bottom:10px}
+.sub{color:var(--muted);margin-top:12px;max-width:56ch}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:30px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
+.card p{color:var(--muted);margin-top:8px;font-size:.98rem}
+.chip{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:middle}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.step{padding:22px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 14px 14px 0;min-width:0}
+.step p{color:var(--muted);margin-top:6px;font-size:.98rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.stat{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface);min-width:0}
+.stat b{display:block;font-family:var(--font-display);font-size:2.4rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:10px;color:var(--muted);font-size:.95rem}
+.price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:24px}
+.price b{font-family:var(--font-display);font-size:3.2rem;color:var(--accent)}
+.price span{color:var(--muted)}
+.contact{background:var(--accent);color:var(--accent-fg);border-radius:20px;padding:40px 28px;margin-block:20px 56px}
+.contact h2{color:var(--accent-fg)}
+.contact p{margin-top:12px;max-width:52ch;opacity:.92}
+.contact .btn{background:var(--accent-fg);color:var(--accent);border-color:var(--accent-fg)}
+.contact .rows{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 28px;margin-top:24px}
+.contact .rows div{min-width:0;overflow-wrap:anywhere}
+.contact small{display:block;opacity:.75;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+footer{padding-block:0 36px;color:var(--muted);font-size:.88rem}
+@media (max-width:820px){
+  .hero,.grid3,.grid2,.steps,.stats,.contact .rows{grid-template-columns:1fr}
+  .hero{gap:28px;padding-top:12px}
+}
+@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-2px)}}
+</style>
+
+<div class="wrap">
+<nav>
+  <div class="brand">Calm<span>ora</span></div>
+  <div><a class="link" href="#zones">Zones</a><a class="link" href="#how">How it works</a><a class="link" href="#proof">Proof</a><a class="link" href="#visit">Visit</a></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <p class="eyebrow">Where food meets peace</p>
+    <h1>A quiet café made for study and work.</h1>
+    <p class="lead">Good food, noise-controlled seating, reliable Wi-Fi and a reading corner. Staff find you a seat that suits what you came to do.</p>
+    <div class="cta">
+      <a class="btn primary" href="#visit">Visit Calmora</a>
+      <a class="btn ghost" href="#zones">See the zones</a>
+    </div>
+  </div>
+  <figure class="plan" style="margin:0">
+    <svg viewBox="0 0 420 330" role="img" aria-label="Floor plan of Calmora Cafe showing a quiet work zone, reading corner, social zone, food counter and reception desk">
+      <rect x="6" y="6" width="408" height="318" rx="14" fill="none" stroke="var(--line)" stroke-width="2"/>
+      <rect x="20" y="20" width="230" height="140" rx="10" fill="var(--z-quiet)"/>
+      <text x="34" y="46" font-size="14" font-weight="600" fill="var(--fg)" font-family="Figtree,sans-serif">Quiet work zone</text>
+      <g fill="var(--fg)" opacity=".55"><rect x="40" y="70" width="46" height="24" rx="4"/><rect x="104" y="70" width="46" height="24" rx="4"/><rect x="168" y="70" width="46" height="24" rx="4"/><rect x="40" y="112" width="46" height="24" rx="4"/><rect x="104" y="112" width="46" height="24" rx="4"/><rect x="168" y="112" width="46" height="24" rx="4"/></g>
+      <rect x="264" y="20" width="136" height="140" rx="10" fill="var(--z-read)"/>
+      <text x="278" y="46" font-size="14" font-weight="600" fill="var(--fg)" font-family="Figtree,sans-serif">Reading corner</text>
+      <g fill="var(--fg)" opacity=".55"><rect x="280" y="64" width="104" height="10" rx="3"/><rect x="280" y="80" width="104" height="10" rx="3"/><circle cx="310" cy="128" r="14"/><circle cx="356" cy="128" r="14"/></g>
+      <rect x="20" y="176" width="150" height="128" rx="10" fill="var(--z-social)"/>
+      <text x="34" y="202" font-size="14" font-weight="600" fill="var(--fg)" font-family="Figtree,sans-serif">Social tables</text>
+      <g fill="var(--fg)" opacity=".55"><circle cx="70" cy="252" r="22"/><circle cx="125" cy="252" r="22"/></g>
+      <rect x="184" y="176" width="216" height="62" rx="10" fill="var(--z-food)"/>
+      <text x="198" y="212" font-size="14" font-weight="600" fill="var(--fg)" font-family="Figtree,sans-serif">Food and beverage counter</text>
+      <rect x="184" y="250" width="216" height="54" rx="10" fill="var(--soft)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="198" y="283" font-size="14" font-weight="600" fill="var(--fg)" font-family="Figtree,sans-serif">Reception: seat assignment</text>
+    </svg>
+    <figcaption>Planned layout. Every zone has its own noise level.</figcaption>
+  </figure>
+</header>
+
+<section id="zones">
+  <p class="eyebrow">What you get</p>
+  <h2>One café, four kinds of space.</h2>
+  <p class="sub">Most cafés mix everything in one room. Calmora separates quiet work, reading, conversation and food.</p>
+  <div class="grid2">
+    <div class="card"><h3><span class="chip" style="background:var(--z-quiet)"></span>Quiet work zone</h3><p>Noise-controlled seats with charging points and stable Wi-Fi for study, assignments and long work sessions.</p></div>
+    <div class="card"><h3><span class="chip" style="background:var(--z-read)"></span>Reading corner</h3><p>A dedicated spot with books for a calm break between study blocks.</p></div>
+    <div class="card"><h3><span class="chip" style="background:var(--z-social)"></span>Social tables</h3><p>Group discussions and project meetings without disturbing people who are focusing.</p></div>
+    <div class="card"><h3><span class="chip" style="background:var(--z-food)"></span>Food and beverages</h3><p>Quality food and drinks served at your table, so you can stay productive.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <p class="eyebrow">How it works</p>
+  <h2>Walk in. We find your seat.</h2>
+  <div class="steps">
+    <div class="step"><h3>Tell reception</h3><p>Say whether you are studying, working, in a meeting or just relaxing.</p></div>
+    <div class="step"><h3>Get matched</h3><p>Staff seat you in the zone that fits, with charging and Wi-Fi ready.</p></div>
+    <div class="step"><h3>Stay focused</h3><p>Order food at your seat and work without noise or crowding.</p></div>
+  </div>
+</section>
+
+<section id="proof">
+  <p class="eyebrow">Why it is needed</p>
+  <h2>Cafés are a gamble. Calmora is not.</h2>
+  <p class="sub">A 2025 study found students split almost evenly on whether cafés help or hurt their focus.</p>
+  <div class="stats">
+    <div class="stat"><b>48.2%</b><span>of students faced distractions in cafés (2025 study)</span></div>
+    <div class="stat"><b>50.4%</b><span>found cafés calm and peaceful, so results vary from place to place</span></div>
+    <div class="stat"><b>13 of 15</b><span>people who tried our prototype liked or loved it</span></div>
+  </div>
+  <p class="sub" style="margin-top:18px">Prototype visitors liked the peaceful atmosphere, comfortable seating, food and the reading corner. They asked for more quiet seats and more privacy for online meetings, so we are planning for both.</p>
+</section>
+
+<section id="price">
+  <p class="eyebrow">Pricing</p>
+  <h2>Simple pay-per-visit pricing.</h2>
+  <div class="price"><b>₹300</b><span>per visit, for a seat in your zone. Food and beverages are extra.</span></div>
+  <p class="sub">Student-friendly, and well below the cost of a formal co-working desk.</p>
+</section>
+
+<section id="visit" style="border-top:none;padding-bottom:0">
+  <div class="contact">
+    <p class="eyebrow" style="color:var(--accent-fg);opacity:.8">Opening soon</p>
+    <h2>Be among our first guests.</h2>
+    <p>We are launching near colleges and offices in Guntur, then Vijayawada and Visakhapatnam. Opening-day offers and student discounts are planned.</p>
+    <div class="rows">
+      <div><small>Location</small>Guntur, Andhra Pradesh</div>
+      <div><small>Built by</small>G.P. Keerthana, M. Anitha, Ch. Varshitha</div>
+      <div><small>College</small>Vignan's Nirula Institute of Technology and Sciences for Women</div>
+      <div><small>Contact</small>Phone, WhatsApp and Instagram will be added at launch</div>
+    </div>
+  </div>
+</section>
+
+<footer>© Calmora Cafe. Student venture, Vignan's Nirula Institute of Technology and Sciences for Women, Guntur.</footer>
+</div>
